@@ -1,0 +1,35 @@
+{% extends 'portfolioapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="secondback">
+    <div class="container">
+      <br>
+      <h1 class="heading06" data-en="Love you">Blog</h1>
+  
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for blog in blogs %}
+        <div class="col">
+          <div class="card">
+            {% if blog.image%}
+            <img src="{{ blog.image.url }}" class="card-img-top"/>
+            {% endif %}
+            <div class="card-body">
+                <a href="{% url 'blogapp:detail' blog.id %}"><h5 class="card-title">{{ blog.title }}</h5></a>
+              <p class="card-text">
+                {{ blog.description|truncatechars:30 }}
+              </p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        </div>
+        <br>
+        <div style="text-align: center;">Shuhei has written {{ blogs.count }} blog{{ blogs.count|pluralize }} whereas Prerana wrote "ZERO!!!"</div>
+
+      </div><!-- /.container -->
+  </div>
+
+
+{% endblock %}
